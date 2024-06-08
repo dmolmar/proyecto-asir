@@ -1,8 +1,9 @@
-# mi_aplicacion/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import RegistroForm, LoginForm
+from .forms import RegistroForm, LoginForm, ClaseForm
+from .models import Clase
 
 def index(request):
     return render(request, 'index.html')
@@ -34,10 +35,41 @@ def iniciar_sesion(request):
         form = LoginForm()
     return render(request, 'iniciar_sesion.html', {'form': form})
 
-@login_required
-def pagina1(request):
-    return render(request, 'pagina1.html')
+def index(request):
+    form = ClaseForm()
+    clases_creadas = request.user.clases_creadas.all()
+    clases_unidas = request.user.clases_unidas.all()
+    if request.method == 'POST':
+        if 'añadirClaseBtn' in request.POST:
+            form = ClaseForm(request.POST, request.FILES)
+            if form.is_valid():
+                nueva_clase = form.save(commit=False)
+                nueva_clase.creador = request.user
+                nueva_clase.save()
+                messages.success(request, 'Clase añadida exitosamente.')
+                return redirect('index')
+            else:
+                messages.error(request, 'Error al añadir la clase.')
+        elif 'unirseClaseBtn' in request.POST:
+            id = request.POST.get('id')
+            try:
+                clase = Clase.objects.get(id=id)
+                clase.usuarios.add(request.user)
+                messages.success(request, 'Te has unido a la clase exitosamente.')
+                return redirect('clase', id=id)
+            except Clase.DoesNotExist:
+                messages.error(request, 'No existe una clase con esa ID.')
+    return render(request, 'index.html', {
+        'form': form,
+        'clases_creadas': clases_creadas,
+        'clases_unidas': clases_unidas
+    })
 
+def clase(request, id):
+    clase = get_object_or_404(Clase, id=id)
+    return render(request, 'clase.html', {'clase': clase})
+
+@login_required
 def cerrar_sesion(request):
     logout(request)
     return redirect('index')

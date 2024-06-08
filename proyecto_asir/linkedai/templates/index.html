@@ -1,7 +1,122 @@
 {% extends 'base.html' %}
 
-{% block title %}Inicio{% endblock %}
-
 {% block content %}
-<h2>Bienvenido a la página principal</h2>
+{% if user.is_authenticated %}
+    <h2>Bienvenido, {{ user.name }}</h2>
+    <button id="añadirClaseBtn">+ AÑADIR CLASE</button>
+    <button id="unirseClaseBtn">+ UNIRSE A CLASE</button>
+    
+    <h3>Clases Creadas</h3>
+    <div class="grid">
+        {% for clase in clases_creadas %}
+            <a href="{% url 'clase' clase.id %}">
+                <div class="clase">
+                    <div class="titulo">
+                        <h3>{{ clase.nombre }}</h3>
+                    </div>
+                    <div class="imagen">
+                        {% if clase.imagen %}
+                            <img src="{{ clase.imagen.url }}" alt="{{ clase.nombre }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <h3>Clases Unidas</h3>
+    <div class="grid">
+        {% for clase in clases_unidas %}
+            <a href="{% url 'clase' clase.id %}">
+                <div class="clase">
+                    <div class="titulo">
+                        <h3>{{ clase.nombre }}</h3>
+                    </div>
+                    <div class="imagen">
+                        {% if clase.imagen %}
+                            <img src="{{ clase.imagen.url }}" alt="{{ clase.nombre }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <!-- Modal Añadir Clase -->
+    <div id="añadirClaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Añadir Clase</h2>
+            <form id="añadirClaseForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" name="añadirClaseBtn">Añadir Clase</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Unirse a Clase -->
+    <div id="unirseClaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Unirse a Clase</h2>
+            <form id="unirseClaseForm" method="post">
+                {% csrf_token %}
+                <label for="id">ID de la Clase:</label>
+                <input type="text" id="id" name="id">
+                <button type="submit" name="unirseClaseBtn">Unirse a Clase</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal elements
+        var añadirClaseModal = document.getElementById("añadirClaseModal");
+        var unirseClaseModal = document.getElementById("unirseClaseModal");
+
+        // Get the button elements
+        var añadirClaseBtn = document.getElementById("añadirClaseBtn");
+        var unirseClaseBtn = document.getElementById("unirseClaseBtn");
+
+        // Get the <span> elements that close the modals
+        var closeBtns = document.getElementsByClassName("close");
+
+        // When the user clicks the buttons, open the respective modal 
+        añadirClaseBtn.onclick = function() {
+          añadirClaseModal.style.display = "block";
+        }
+
+        unirseClaseBtn.onclick = function() {
+          unirseClaseModal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        for (var i = 0; i < closeBtns.length; i++) {
+          closeBtns[i].onclick = function() {
+            añadirClaseModal.style.display = "none";
+            unirseClaseModal.style.display = "none";
+          }
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == añadirClaseModal) {
+            añadirClaseModal.style.display = "none";
+          }
+          if (event.target == unirseClaseModal) {
+            unirseClaseModal.style.display = "none";
+          }
+        }
+    </script>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% else %}
+    <h2>Bienvenido a la página principal</h2>
+{% endif %}
 {% endblock %}

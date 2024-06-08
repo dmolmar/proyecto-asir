@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import User
+from .models import User, Clase
 
 class RegistroForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -12,3 +12,11 @@ class RegistroForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(label='Email', max_length=255)
+
+class ClaseForm(forms.ModelForm):
+    class Meta:
+        model = Clase
+        fields = ['nombre', 'imagen']
+
+class UnirseClaseForm(forms.Form):
+    id = forms.CharField(label='ID de la Clase', max_length=8)
