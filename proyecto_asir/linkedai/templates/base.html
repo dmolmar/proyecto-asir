@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>{% block title %}Mi Proyecto{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Mi Proyecto</h1>
+        <nav>
+            <a href="{% url 'index' %}">Inicio</a>
+            {% if user.is_authenticated %}
+                <span>Hola, {{ user.name }}</span>
+                {% if user.is_staff %}
+                    <a href="{% url 'admin:index' %}">Admin</a>
+                {% endif %}
+                <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+            {% else %}
+                <a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a>
+                <a href="{% url 'registro' %}">Registrarse</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>Pie de página</p>
+    </footer>
+</body>
+</html>
