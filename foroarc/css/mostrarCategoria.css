@@ -1,0 +1,75 @@
+* {
+    text-decoration: none;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #edf8fa;
+    font-weight: 300;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#contenido {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+}
+
+#hilos {
+    width: 60%;
+}
+
+.hilo {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    background-color: rgb(179, 208, 255);
+    padding: 5px 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+.hilo h2 {
+    margin-top: 3px;
+}
+
+.hilo form {
+    margin-bottom: 15px;
+}
+
+.hilo:hover {
+    background-color: #777777;
+    transition: .2s;
+}
+
+input[id="titulo_tema"] {
+    width: 30vw;
+}
+
+textarea#contenido_tema {
+    width: 40vw;
+    height: 20vh;
+}
+
+#extra {
+    width: 30%;
+}
+
+#enlace {
+    background-color: rgb(128, 175, 132);
+    padding: 3px;
+    border-radius: 5px;
+}

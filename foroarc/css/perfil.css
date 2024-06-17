@@ -1,0 +1,80 @@
+* {
+    text-decoration: none;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #edf8fa;
+    font-weight: 300;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#contenido {
+    display: flex;
+    width: 80vw;
+    justify-content: space-between;
+}
+
+#perfil {
+    width: 60%;
+}
+
+#perfil table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: rgb(179, 208, 255);
+    margin-bottom: 20px;
+}
+
+#perfil table td,tr {
+    word-wrap: break-word;
+    max-width: 20vw;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#perfil table img {
+    max-width: 7vw;
+    max-height: 11vh;
+}
+
+#perfil table input[type="text"], input[type="email"] {
+    width: 97%;
+}
+
+#perfil table textarea {
+    width: 97%;
+    height: 10vh;
+}
+
+#extra_forms {
+    display: flex;
+    width: 30vw;
+    gap: 20px;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(179, 208, 255);
+    margin-top: 20px;
+    padding: 10px;
+}
+
+input[name="cambiar_privilegios"] {
+    margin-top: 15%;
+}
+
+#extra {
+    width: 30%;
+}
+
+

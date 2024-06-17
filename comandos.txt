@@ -1,5 +1,20 @@
-COMANDOS ÚTILES
+kubectl exec -it mysql-deployment-67d69c6696-sljpd -- bash
 
-aws eks --region us-east-1 update-kubeconfig --name proyecto14-eks-cluster
-kubectl get svc proyecto14-service
-kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/ecr/?ref=master"
+kubectl apply -f foroarc.yaml
+kubectl delete -f foroarc.yaml
+kubectl logs mysql-deployment-67d69c6696-h7mg4
+kubectl describe pod mysql-deployment-5cf948f-w6pc6
+
+minikube service nginx-service --url (ventana aparte)
+
+minikube start
+minikube mount "C:\Users\molma\Desktop\proyecto-asir":/mnt/proyecto-asir
+minikube stop
+minikube delete
+
+docker build -t my-mysql:5.7 .
+docker tag my-mysql:5.7 dmolmar/foroarc-mysql:5.7
+docker push dmolmar/foroarc-mysql:5.7
+
+kubectl create configmap mysql-initdb-config --from-file=init.sql (desde proyecto-asir\dockerfiles\mysql)
+kubectl delete configmap mysql-initdb-config

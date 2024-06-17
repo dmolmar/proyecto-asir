@@ -1,0 +1,7 @@
+FROM php:7.4-fpm
+
+# Install necessary packages and extensions
+RUN docker-php-ext-install mysqli
+
+# Copy custom PHP configuration
+COPY custom.ini /usr/local/etc/php/conf.d/

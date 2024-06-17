@@ -1,0 +1,4 @@
+FROM mysql:5.7
+
+# Add a custom script to create the database and tables
+COPY init.sql /docker-entrypoint-initdb.d/

@@ -1,0 +1,127 @@
+* {
+    text-decoration: none;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #edf8fa;
+    font-weight: 300;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#contenido {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+}
+
+#hilo {
+    width: 60%;
+}
+
+#extra {
+    width: 30%;
+}
+
+#contenedor_hilo {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(179, 208, 255);
+    padding: 10px 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+#contenedor_hilo img {
+    max-width: 7vw;
+    max-height: 11vh;
+    margin-right: 10px;
+}
+
+#contenedor_hilo p {
+    margin: 0;
+}
+
+#usuario_hilo {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+#usuario_hilo #info_usuario {
+    display: flex;
+    align-items: center;
+}
+
+#usuario_hilo #info_usuario > div {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#usuario_hilo #opciones_respuesta {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#usuario_hilo a {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#contenido_hilo {
+    width: 100%;
+    min-height: 10vh;
+}
+
+#contenido_respuesta.hidden {
+    display: none;
+}
+
+#contenido_respuesta.visible {
+    display: block;
+    background-color: #777777;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 20vw;
+    height: 20vh;
+}
+
+#info {
+    display: flex;
+    justify-content: space-between;
+}
+
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 100%;               
+    background-color:black;
+    height: 1px;
+  }
+
+#enlace {
+    background-color: rgb(128, 175, 132);
+    padding: 3px;
+    border-radius: 5px;
+}

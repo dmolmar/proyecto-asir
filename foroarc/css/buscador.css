@@ -1,0 +1,41 @@
+* {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #edf8fa;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#contenido {
+    display: flex;
+    width: 80vw;
+    justify-content: space-between;
+}
+
+#resultados {
+    width: 60%;
+}
+
+#extra {
+    width: 30%;
+}
+
+#enlace {
+    background-color: rgb(128, 175, 132);
+    padding: 3px;
+    border-radius: 5px;
+}
